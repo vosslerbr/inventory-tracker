@@ -1,0 +1,21 @@
+{
+  "name": "inventory-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "author": "Brady Vossler",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "mongoose": "^5.9.26"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}

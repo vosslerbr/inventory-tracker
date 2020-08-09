@@ -139,7 +139,7 @@ export default class CreateItem extends Component {
             value={this.state.instrument}
             onChange={this.onChangeInstrument}
           />
-          <button type="submit">Add Item</button>
+          <button type="submit">Add</button>
         </form>
       </div>
     );

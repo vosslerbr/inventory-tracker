@@ -17,6 +17,12 @@ input {
   border-radius: 10px;
 }
 
+input:focus {
+  outline: none;
+  border: 2px solid rgb(145, 151, 167);
+  background-color: rgb(250, 250, 250);
+}
+
 .inputAside {
   margin: 0 0 0.25rem 0;
   padding: 0;
@@ -31,4 +37,8 @@ button {
   margin-bottom: 1rem;
   border: 2px solid rgb(183, 190, 209);
   border-radius: 10px;
+}
+
+button:hover {
+  border: 2px solid rgb(145, 151, 167);
 }

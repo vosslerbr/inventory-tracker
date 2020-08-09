@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/Item.css";
 
@@ -11,7 +12,7 @@ const Item = (props) => (
     <td className="itemProperty">{props.item.instrument}</td>
     <td className="itemProperty">{props.item.date}</td>
     <td className="itemProperty">
-      {/* <Link to={"/edit/"+props.todo._id}>Edit</Link> */}
+      <Link to={"/update/" + props.item._id}>Update</Link>
     </td>
   </tr>
 );

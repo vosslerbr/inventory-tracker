@@ -17,13 +17,10 @@ function App() {
           <Link to="/create" className="nav-link">
             Create Item
           </Link>
-          <Link to="/update" className="nav-link">
-            Update Item
-          </Link>
         </nav>
       </header>
       <Route path="/" exact component={InventoryList} />
-      <Route path="/update" component={UpdateItem} />
+      <Route path="/update/:id" component={UpdateItem} />
       <Route path="/create" component={CreateItem} />
     </Router>
   );

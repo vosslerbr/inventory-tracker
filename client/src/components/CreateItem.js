@@ -89,57 +89,75 @@ export default class CreateItem extends Component {
       <div className="createContainer">
         <h2>Create</h2>
         <form onSubmit={this.onSubmit}>
-          <label>Part Number</label>
-          <p className="inputAside">Don't include any dashes</p>
+          <div className="inputLabel">
+            <label>Part Number</label>
+            <p className="inputAside">Don't include any dashes</p>
+          </div>
+
           <input
             type="text"
             required
             value={this.state.partNumber}
             onChange={this.onChangePartNumber}
           />
-          <label>Part Name</label>
-          <p className="inputAside">What's this part called?</p>
+          <div className="inputLabel">
+            <label>Part Name</label>
+            <p className="inputAside">What's this part called?</p>
+          </div>
+
           <input
             type="text"
             required
             value={this.state.name}
             onChange={this.onChangePartName}
           />
-          <label>Amount</label>
-          <p className="inputAside">How many do we have?</p>
+          <div className="inputLabel">
+            <label>Amount</label>
+            <p className="inputAside">How many do we have?</p>
+          </div>
+
           <input
             type="number"
             required
             value={this.state.amount}
             onChange={this.onChangeAmount}
           />
-          <label>Order Limit</label>
-          <p className="inputAside">
-            How many should we have to trigger an order?
-          </p>
+          <div className="inputLabel">
+            <label>Order Limit</label>
+            <p className="inputAside">
+              How many should we have to trigger an order?
+            </p>
+          </div>
+
           <input
             type="number"
             required
             value={this.state.orderLimit}
             onChange={this.onChangeOrderLimit}
           />
-          <label>Category</label>
-          <p className="inputAside">i.e. Brass, Woodwind, Percussion</p>
+          <div className="inputLabel">
+            <label>Category</label>
+            <p className="inputAside">i.e. Brass, Woodwind, Percussion</p>
+          </div>
+
           <input
             type="text"
             required
             value={this.state.category}
             onChange={this.onChangeCategory}
           />
-          <label>Instrument</label>
-          <p className="inputAside">i.e. Flute, Clarinet, Alto Sax...</p>
+          <div className="inputLabel">
+            <label>Instrument</label>
+            <p className="inputAside">i.e. Flute, Clarinet, Alto Sax...</p>
+          </div>
+
           <input
             type="text"
             required
             value={this.state.instrument}
             onChange={this.onChangeInstrument}
           />
-          <button type="submit">Add</button>
+          <button type="submit">Confirm Changes</button>
         </form>
       </div>
     );

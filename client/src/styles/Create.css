@@ -13,14 +13,16 @@ input {
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 1rem;
-  border: 2px solid rgb(183, 190, 209);
-  border-radius: 10px;
+  border: none;
+  border-radius: 1px;
+  background-color: #222831;
+  color: #eee;
+  transition: 0.1s;
 }
 
 input:focus {
   outline: none;
-  border: 2px solid rgb(145, 151, 167);
-  background-color: rgb(250, 250, 250);
+  background-color: #1a1f25;
 }
 
 .inputAside {
@@ -35,10 +37,21 @@ button {
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
   margin-bottom: 1rem;
-  border: 2px solid rgb(183, 190, 209);
-  border-radius: 10px;
+  color: #eee;
+  background-color: #222831;
+  border: none;
+  border-radius: 1px;
+  transition: 0.1s;
 }
 
 button:hover {
-  border: 2px solid rgb(145, 151, 167);
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.267);
+  background-color: #1a1f25;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
 }

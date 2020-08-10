@@ -103,4 +103,18 @@ router.post("/update/:id", (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+// Search for items
+router.get("/search/:query", function (req, res, next) {
+  const query = req.params.query;
+  if (query == "brass" || query == "woodwind" || query == "percussion") {
+    Item.find({ category: query })
+      .then((items) => res.json(items))
+      .catch((err) => res.status(400).json("Error: " + err));
+  } else {
+    Item.find({ instrument: query })
+      .then((items) => res.json(items))
+      .catch((err) => res.status(400).json("Error: " + err));
+  }
+});
+
 module.exports = router;

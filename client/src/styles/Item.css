@@ -66,3 +66,16 @@ th {
 .needToOrder {
   color: #fa5757;
 }
+
+@media screen and (max-width: 1040px) {
+  td:nth-of-type(4),
+  td:nth-of-type(5),
+  td:nth-of-type(6) {
+    display: none;
+  }
+  th:nth-of-type(4),
+  th:nth-of-type(5),
+  th:nth-of-type(6) {
+    display: none;
+  }
+}

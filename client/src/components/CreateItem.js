@@ -33,7 +33,7 @@ export default class CreateItem extends Component {
       name: this.state.name,
       amount: this.state.amount,
       orderLimit: this.state.orderLimit,
-      category: this.state.category,
+      category: this.state.category.toLowerCase(),
       instrument: this.state.instrument,
       lessThanLimit: this.state.lessThanLimit,
     };

@@ -9,13 +9,30 @@ export default class InventoryList extends Component {
     this.deleteItem = this.deleteItem.bind(this);
     this.incrementAmount = this.incrementAmount.bind(this);
     this.decrementAmount = this.decrementAmount.bind(this);
-    this.state = { items: [] };
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeSearchQuery = this.onChangeSearchQuery.bind(this);
+    this.state = { items: [], searchQuery: "" };
   }
 
   componentDidMount() {
     axios
       .get("http://localhost:5000/api/items", { crossDomain: true })
       .then((res) => this.setState({ items: res.data }));
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const searchQuery = this.state.searchQuery;
+    console.log(searchQuery);
+
+    axios
+      .get(`http://localhost:5000/api/items/search/${searchQuery}`, {
+        crossDomain: true,
+      })
+      .then((res) => this.setState({ items: res.data }))
+
+      .catch((err) => console.log(err));
   }
 
   itemsList() {
@@ -51,6 +68,12 @@ export default class InventoryList extends Component {
         items: this.state.items.filter((el) => el._id !== id),
       });
     }
+  }
+
+  onChangeSearchQuery(e) {
+    this.setState({
+      searchQuery: e.target.value,
+    });
   }
 
   incrementAmount(
@@ -119,6 +142,12 @@ export default class InventoryList extends Component {
     return (
       <div className="appContainer">
         <h2>List</h2>
+        <div>
+          <form onSubmit={this.onSubmit}>
+            <input type="text" onChange={this.onChangeSearchQuery} />
+            <button type="submit">Search</button>
+          </form>
+        </div>
         <table>
           <thead>
             <tr>

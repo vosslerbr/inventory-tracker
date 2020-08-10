@@ -5,10 +5,12 @@
 table {
   border-collapse: collapse;
   width: 100%;
+  background-color: #222831;
 }
 
 tbody {
   padding: 1rem 0;
+  border-top: 1px solid rgba(238, 238, 238, 0.5);
 }
 
 .itemContainer {
@@ -16,17 +18,16 @@ tbody {
 }
 
 td {
-  padding: 0.55rem 0.5rem 0.5rem 0.5rem;
+  padding: 1.05rem 1rem 1rem 1rem;
 }
 
 th {
-  padding-right: 2rem;
-  padding-left: 0.5rem;
+  padding: 1rem;
   text-align: left;
 }
 
 .editIcon {
-  stroke: #eee;
+  stroke: rgb(101, 173, 255);
   height: 1.25rem;
   width: 1.25rem;
 }
@@ -35,4 +36,32 @@ th {
   stroke: #fa5757;
   height: 1.25rem;
   width: 1.25rem;
+  cursor: pointer;
+}
+
+.incrementIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+  cursor: pointer;
+  stroke: #57fa65;
+  margin-left: 1rem;
+}
+
+.decrementIcon {
+  height: 1.25rem;
+  width: 1.25rem;
+  cursor: pointer;
+  stroke: #faa057;
+}
+
+.incrementIcon:active {
+  opacity: 0.5;
+}
+
+.decrementIcon:active {
+  opacity: 0.5;
+}
+
+.needToOrder {
+  color: #fa5757;
 }

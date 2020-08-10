@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiEdit, FiTrash2, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
 import axios from "axios";
 import "../styles/Item.css";
+//import UpdateItem from "./UpdateItem";
+//import { update } from "../../../server/models/Item";
 
 const Item = (props) => (
-  <tr className="itemContainer">
+  <tr
+    className={`itemContainer ${
+      props.lessThanLimit ? "needToOrder" : "noOrder"
+    }`}
+  >
     <td className="itemProperty">{props.item.partNumber}</td>
     <td className="itemProperty">{props.item.name}</td>
     <td className="itemProperty">{props.item.amount}</td>
@@ -26,6 +32,40 @@ const Item = (props) => (
         <FiTrash2 className="deleteIcon" title="Delete Item" />
       </div>
     </td>
+    <td>
+      <FiMinusCircle
+        className="decrementIcon"
+        onClick={() => {
+          props.decrementAmount(
+            props.item._id,
+            props.item.partNumber,
+            props.item.name,
+            props.item.amount,
+            props.item.category,
+            props.item.orderLimit,
+            props.item.instrument,
+            props.item.lessThanLimit,
+            props.itemId
+          );
+        }}
+      />
+      <FiPlusCircle
+        className="incrementIcon"
+        onClick={() => {
+          props.incrementAmount(
+            props.item._id,
+            props.item.partNumber,
+            props.item.name,
+            props.item.amount,
+            props.item.category,
+            props.item.orderLimit,
+            props.item.instrument,
+            props.item.lessThanLimit,
+            props.itemId
+          );
+        }}
+      />
+    </td>
   </tr>
 );
 
@@ -33,6 +73,8 @@ export default class InventoryList extends Component {
   constructor(props) {
     super(props);
     this.deleteItem = this.deleteItem.bind(this);
+    this.incrementAmount = this.incrementAmount.bind(this);
+    this.decrementAmount = this.decrementAmount.bind(this);
     this.state = { items: [] };
   }
   componentDidMount() {
@@ -43,7 +85,17 @@ export default class InventoryList extends Component {
 
   itemsList() {
     return this.state.items.map((currentItem, i) => {
-      return <Item item={currentItem} key={i} deleteItem={this.deleteItem} />;
+      return (
+        <Item
+          item={currentItem}
+          key={i}
+          itemId={i}
+          deleteItem={this.deleteItem}
+          incrementAmount={this.incrementAmount}
+          decrementAmount={this.decrementAmount}
+          lessThanLimit={currentItem.amount < currentItem.orderLimit}
+        />
+      );
     });
   }
 
@@ -64,6 +116,67 @@ export default class InventoryList extends Component {
         items: this.state.items.filter((el) => el._id !== id),
       });
     }
+  }
+
+  incrementAmount(
+    id,
+    partNumber,
+    name,
+    amount,
+    category,
+    orderLimit,
+    instrument,
+    lessThanLimit,
+    itemId
+  ) {
+    const updatedItem = {
+      partNumber: partNumber,
+      name: name,
+      amount: amount + 1,
+      orderLimit: orderLimit,
+      category: category,
+      instrument: instrument,
+      lessThanLimit: lessThanLimit,
+    };
+
+    axios
+      .post("http://localhost:5000/api/items/update/" + id, updatedItem)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+
+    const newState = this.state.items.slice();
+    newState[itemId].amount++;
+    this.setState({ items: newState });
+  }
+  decrementAmount(
+    id,
+    partNumber,
+    name,
+    amount,
+    category,
+    orderLimit,
+    instrument,
+    lessThanLimit,
+    itemId
+  ) {
+    const updatedItem = {
+      partNumber: partNumber,
+      name: name,
+      amount: amount - 1,
+      orderLimit: orderLimit,
+      category: category,
+      instrument: instrument,
+      lessThanLimit: lessThanLimit,
+    };
+
+    axios
+      .post("http://localhost:5000/api/items/update/" + id, updatedItem)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+
+    const newState = this.state.items.slice();
+    newState[itemId].amount--;
+    this.setState({ items: newState });
   }
 
   render() {

@@ -22,6 +22,7 @@ const ItemSchema = new mongoose.Schema({
   lessThanLimit: {
     type: Boolean,
     required: false,
+    default: false,
   },
   category: {
     type: String,

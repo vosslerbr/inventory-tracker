@@ -67,6 +67,8 @@ router.delete("/:id", (req, res) => {
   Item.findOneAndRemove({ _id: req.params.id }, req.body, function (err, data) {
     if (!err) {
       console.log("Deleted");
+    } else {
+      console.log(err);
     }
   });
 

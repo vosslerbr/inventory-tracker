@@ -1,73 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { FiEdit, FiTrash2, FiMinusCircle, FiPlusCircle } from "react-icons/fi";
+import Item from "./Item";
 import axios from "axios";
 import "../styles/Item.css";
-//import UpdateItem from "./UpdateItem";
-//import { update } from "../../../server/models/Item";
-
-const Item = (props) => (
-  <tr
-    className={`itemContainer ${
-      props.lessThanLimit ? "needToOrder" : "noOrder"
-    }`}
-  >
-    <td className="itemProperty">{props.item.partNumber}</td>
-    <td className="itemProperty">{props.item.name}</td>
-    <td className="itemProperty">{props.item.amount}</td>
-    <td className="itemProperty">{props.item.category}</td>
-    <td className="itemProperty">{props.item.instrument}</td>
-    <td className="itemProperty">{props.item.date.substring(0, 10)}</td>
-    <td className="itemProperty">
-      <Link to={"/update/" + props.item._id}>
-        <FiEdit className="editIcon" title="Edit Item" />
-      </Link>
-    </td>
-    <td className="itemProperty">
-      <div
-        onClick={() => {
-          props.deleteItem(props.item._id);
-        }}
-      >
-        <FiTrash2 className="deleteIcon" title="Delete Item" />
-      </div>
-    </td>
-    <td>
-      <FiMinusCircle
-        className="decrementIcon"
-        onClick={() => {
-          props.decrementAmount(
-            props.item._id,
-            props.item.partNumber,
-            props.item.name,
-            props.item.amount,
-            props.item.category,
-            props.item.orderLimit,
-            props.item.instrument,
-            props.item.lessThanLimit,
-            props.itemId
-          );
-        }}
-      />
-      <FiPlusCircle
-        className="incrementIcon"
-        onClick={() => {
-          props.incrementAmount(
-            props.item._id,
-            props.item.partNumber,
-            props.item.name,
-            props.item.amount,
-            props.item.category,
-            props.item.orderLimit,
-            props.item.instrument,
-            props.item.lessThanLimit,
-            props.itemId
-          );
-        }}
-      />
-    </td>
-  </tr>
-);
 
 export default class InventoryList extends Component {
   constructor(props) {
@@ -77,6 +11,7 @@ export default class InventoryList extends Component {
     this.decrementAmount = this.decrementAmount.bind(this);
     this.state = { items: [] };
   }
+
   componentDidMount() {
     axios
       .get("http://localhost:5000/api/items", { crossDomain: true })
@@ -148,6 +83,7 @@ export default class InventoryList extends Component {
     newState[itemId].amount++;
     this.setState({ items: newState });
   }
+
   decrementAmount(
     id,
     partNumber,

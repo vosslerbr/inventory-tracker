@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { FiHome, FiPlus } from "react-icons/fi";
 import "./styles/Global.css";
 import InventoryList from "./components/InventoryList";
 import UpdateItem from "./components/UpdateItem";
@@ -12,10 +13,10 @@ function App() {
         <h1>Inventory Tracker</h1>
         <nav>
           <Link to="/" className="nav-link">
-            Home
+            <FiHome className="homeIcon" title="Go Home" />
           </Link>
           <Link to="/create" className="nav-link">
-            Create Item
+            <FiPlus className="addIcon" title="Add New Item" />
           </Link>
         </nav>
       </header>

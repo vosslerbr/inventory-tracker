@@ -14,7 +14,7 @@ const Item = (props) => (
     <td className="itemProperty">{props.item.date.substring(0, 10)}</td>
     <td className="itemProperty">
       <Link to={"/update/" + props.item._id}>
-        <FiEdit className="editIcon" />
+        <FiEdit className="editIcon" title="Edit Item" />
       </Link>
     </td>
     <td className="itemProperty">
@@ -23,7 +23,7 @@ const Item = (props) => (
           props.deleteItem(props.item._id);
         }}
       >
-        <FiTrash2 className="deleteIcon" />
+        <FiTrash2 className="deleteIcon" title="Delete Item" />
       </div>
     </td>
   </tr>

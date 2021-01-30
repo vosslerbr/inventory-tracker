@@ -16,7 +16,9 @@ export default class InventoryList extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/api/items", { crossDomain: true })
+      .get("https://damp-reef-27996.herokuapp.com/api/items", {
+        crossDomain: true,
+      })
       .then((res) => this.setState({ items: res.data }));
   }
 
@@ -27,9 +29,12 @@ export default class InventoryList extends Component {
     console.log(searchQuery);
 
     axios
-      .get(`http://localhost:5000/api/items/search/${searchQuery}`, {
-        crossDomain: true,
-      })
+      .get(
+        `https://damp-reef-27996.herokuapp.com/api/items/search/${searchQuery}`,
+        {
+          crossDomain: true,
+        }
+      )
       .then((res) => this.setState({ items: res.data }))
 
       .catch((err) => console.log(err));
@@ -55,7 +60,7 @@ export default class InventoryList extends Component {
     if (window.confirm("Are you sure you want to delete this item?")) {
       axios({
         method: "delete",
-        url: `http://localhost:5000/api/items/${id}`,
+        url: `https://damp-reef-27996.herokuapp.com/api/items/${id}`,
         headers: {},
       })
         // .delete("https://localhost:5000/api/items/" + id)
@@ -98,7 +103,10 @@ export default class InventoryList extends Component {
     };
 
     axios
-      .post("http://localhost:5000/api/items/update/" + id, updatedItem)
+      .post(
+        "https://damp-reef-27996.herokuapp.com/api/items/update/" + id,
+        updatedItem
+      )
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 
@@ -129,7 +137,10 @@ export default class InventoryList extends Component {
     };
 
     axios
-      .post("http://localhost:5000/api/items/update/" + id, updatedItem)
+      .post(
+        "https://damp-reef-27996.herokuapp.com/api/items/update/" + id,
+        updatedItem
+      )
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
 

@@ -39,7 +39,7 @@ export default class CreateItem extends Component {
     };
 
     axios
-      .post("http://localhost:5000/api/items", newItem)
+      .post("https://damp-reef-27996.herokuapp.com/api/items", newItem)
       .then((res) => console.log(res.data));
 
     this.setState({

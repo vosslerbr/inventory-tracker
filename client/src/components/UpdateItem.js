@@ -26,7 +26,10 @@ export default class UpdateItem extends Component {
   componentDidMount() {
     console.log(this.props);
     axios
-      .get("http://localhost:5000/api/items/" + this.props.match.params.id)
+      .get(
+        "https://damp-reef-27996.herokuapp.com/api/items/" +
+          this.props.match.params.id
+      )
       .then((response) => {
         this.setState({
           partNumber: response.data.partNumber,
@@ -59,7 +62,8 @@ export default class UpdateItem extends Component {
 
     axios
       .post(
-        "http://localhost:5000/api/items/update/" + this.props.match.params.id,
+        "https://damp-reef-27996.herokuapp.com/api/items/update/" +
+          this.props.match.params.id,
         newItem
       )
       .then((res) => console.log(res.data));

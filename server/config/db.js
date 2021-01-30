@@ -1,15 +1,16 @@
 const mongoose = require("mongoose");
-const config = require("config");
-const db = config.get("mongoURI");
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(db, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: false,
-    });
+    await mongoose.connect(
+      "mongodb+srv://brady123:brady123@cluster0.i8koy.mongodb.net/inventory_tracker?retryWrites=true&w=majority",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+        useFindAndModify: false,
+      }
+    );
     console.log("MongoDB Connected...");
   } catch (err) {
     console.error(err.message);
